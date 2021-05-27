@@ -64,12 +64,23 @@ body {
 }
 
 .content-wrapper {
-  background: $content-bg;
+  // background: $content-bg;
   padding: $content-padding;
   width: 100%;
   @include flex-grow(1);
 }
 
+.content-wrapper::before {
+    content: "";
+    background-image: url("../images/background.jpg");
+    background-size: contain;
+    position: absolute;
+    opacity: 0.9;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+}
 .container-scroller {
   overflow: hidden;
   display: flex;

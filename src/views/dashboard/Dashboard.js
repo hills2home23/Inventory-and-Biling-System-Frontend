@@ -20,7 +20,7 @@ export class Dashboard extends Component {
     datasets: [{
         data: [55, 25, 20],
         backgroundColor: [
-          "#111111","#00d25b","#ffab00"
+          "#d00550","#00d25b","#ffab00"
         ]
       }
     ]
@@ -65,14 +65,14 @@ export class Dashboard extends Component {
             </span>
           </div>
         </div>*/}
-        <div className="row">
+        {/* <div className="row">
           <div className="col-12 grid-margin stretch-card">
             <div className="card gradient-card">
               <div className="card-body py-0 px-0 px-sm-3">
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="row">
           <div className="col-xl-3 col-sm-6 grid-margin stretch-card">
             <div className="card">
@@ -163,11 +163,12 @@ export class Dashboard extends Component {
                 <div className="aligner-wrapper">
                   <Doughnut data={this.transactionHistoryData} options={this.transactionHistoryOptions} />
                   <div className="absolute center-content">
-                    <h5 className="font-weight-normal text-whiite text-center mb-2 text-white">1200</h5>
+                    <h5 className="font-weight-normal text-whiite text-center mb-2 text-black">1200</h5>
                     <p className="text-small text-muted text-center mb-0">Total</p>
                   </div>
                 </div>  
-                <div className="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
+                {/* bg-gray-dark -> bg-light */}
+                <div className="bg-light d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
                   <div className="text-md-center text-xl-left">
                     <h6 className="mb-1">Transfer to Paypal</h6>
                     <p className="text-muted mb-0">07 Jan 2019, 09:12AM</p>
@@ -176,7 +177,8 @@ export class Dashboard extends Component {
                     <h6 className="font-weight-bold mb-0">$236</h6>
                   </div>
                 </div>
-                <div className="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
+                {/* bg-gray-dark -> bg-light */}
+                <div className="bg-light d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
                   <div className="text-md-center text-xl-left">
                     <h6 className="mb-1">Tranfer to Stripe</h6>
                     <p className="text-muted mb-0">07 Jan 2019, 09:12AM</p>
