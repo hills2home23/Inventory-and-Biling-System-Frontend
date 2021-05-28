@@ -24,6 +24,9 @@ const Error500 = lazy(() => import('./error-pages/Error500'));
 const Login = lazy(() => import('./user-pages/Login'));
 const Register1 = lazy(() => import('./user-pages/Register'));
 
+// new components added
+const Assets = lazy(() => import('./products/Assets'));
+
 class AppRoutes extends Component {
   render () {
     return (
@@ -37,17 +40,19 @@ class AppRoutes extends Component {
 
           <Route exact path="/" component={ Dashboard } />
 
-          <ProtectedRoute path="/basic-ui/buttons" component={ Buttons } />
-          <ProtectedRoute path="/basic-ui/dropdowns" component={ Dropdowns } />
-          <ProtectedRoute path="/basic-ui/typography" component={ Typography } />
+          <Route path="/basic-ui/buttons" component={ Buttons } />
+          <Route path="/basic-ui/dropdowns" component={ Dropdowns } />
+          <Route path="/basic-ui/typography" component={ Typography } />
 
-          <ProtectedRoute path="/form-Elements/basic-elements" component={ BasicElements } />
+          <Route path="/form-Elements/basic-elements" component={ BasicElements } />
 
-          <ProtectedRoute path="/tables/basic-table" component={ BasicTable } />
+          <Route path="/tables/basic-table" component={ BasicTable } />
 
-          <ProtectedRoute path="/icons/mdi" component={ Mdi } />
+          <Route path="/icons/mdi" component={ Mdi } />
 
-          <ProtectedRoute path="/charts/chart-js" component={ ChartJs } />
+          <Route path="/charts/chart-js" component={ ChartJs } />
+          {/* new routes */}
+          <Route path="/products" component={Assets}/>
 
           <Route path="/error-pages/error-404" component={ Error404 } />
           <Route path="/error-pages/error-500" component={ Error500 } />
