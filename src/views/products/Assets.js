@@ -1,6 +1,5 @@
-import React, { Component } from 'react'
-import { ProgressBar } from 'react-bootstrap';
-import { useState, useEffect } from "react";
+import React from 'react'
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from '../../actions';
 

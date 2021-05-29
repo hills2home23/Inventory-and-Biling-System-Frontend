@@ -80,7 +80,7 @@
         @include align-items(center);
         white-space: nowrap;
         padding: $sidebar-menu-padding-y 10px $sidebar-menu-padding-y $sidebar-menu-padding-x;
-        color: $sidebar-menu-color;
+        color: #ffffff;
         @include transition-duration(0.45s);
         transition-property: color;
         -webkit-transition-property: color;
@@ -112,7 +112,7 @@
               margin-left: 0;
               margin-right: auto;
             }
-            color: $sidebar-menu-arrow-color;
+            color: #ffffff;
             &:before{
               content: "\f140";
               font-size: inherit;
@@ -121,7 +121,7 @@
           }
         }
         .menu-title {
-          color: inherit;
+          color: #ffffff;
           display: inline-block;
           font-size: $sidebar-menu-font-size;
           line-height: 1;
@@ -321,7 +321,7 @@
         margin-right: 0.5rem;
         font-size: 0.8125rem;
         line-height: 1;
-        background: rgba($text-muted, 0.2);
+        background: #ffffff;
         width: 31px;
         height: 31px;
         border-radius: 100%;

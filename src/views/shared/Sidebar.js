@@ -128,8 +128,8 @@ class Sidebar extends Component {
             </Link>
           </li>
           
-          <li className={ this.isPathActive('/vhdc') ? 'nav-item menu-items active' : 'nav-item menu-items' }>
-            <Link className="nav-link" to="/">
+          <li className={ this.isPathActive('/orders') ? 'nav-item menu-items active' : 'nav-item menu-items' }>
+            <Link className="nav-link" to="/orders">
               <span className="menu-icon"><i className="mdi mdi-speedometer"></i></span>
               <span className="menu-title"><Trans>Orders</Trans></span>
             </Link>
@@ -191,6 +191,30 @@ class Sidebar extends Component {
                 </ul>
               </div>
             </Collapse>
+          </li>
+          
+          <li className={ this.isPathActive('/tablvssses') ? 'nav-item menu-items active' : 'nav-item menu-items' }>
+            <div className={ this.state.chartsMenuOpen ? 'nav-link menu-expanded' : 'nav-link' } onClick={ () => this.toggleMenuState('chartsMenuOpen') } data-toggle="collapse">
+              <span className="menu-icon">
+                <i className="mdi mdi-table-large"></i>
+              </span>
+              <span className="menu-title"><Trans>Email</Trans></span>
+              <i className="menu-arrow"></i>
+            </div>
+            <Collapse in={ this.state.chartsMenuOpen }>
+              <div>
+                <ul className="nav flex-column sub-menu">
+                  <li className="nav-item"> <Link className={ this.isPathActive('/tables/basic-table') ? 'nav-link active' : 'nav-link' } to="/tables/basic-table"><Trans>Alert</Trans></Link></li>
+                  <li className="nav-item"> <Link className={ this.isPathActive('/tables/basic-table') ? 'nav-link active' : 'nav-link' } to="/tables/basic-table"><Trans>Billig</Trans></Link></li>
+                </ul>
+              </div>
+            </Collapse>
+          </li>
+          <li className={ this.isPathActive('/gfydch') ? 'nav-item menu-items active' : 'nav-item menu-items' }>
+            <Link className="nav-link" to="/vgc">
+              <span className="menu-icon"><i className="mdi mdi-speedometer"></i></span>
+              <span className="menu-title"><Trans>Tickets</Trans></span>
+            </Link>
           </li>
         </ul>
       </nav>

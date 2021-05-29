@@ -5,6 +5,7 @@ import ProtectedRoute from "../components/ProtectedRoute";
 import Spinner from './shared/Spinner';
 
 const Dashboard = lazy(() => import('./dashboard/Dashboard'));
+const Orders = lazy(() => import('./orders/orders'));
 
 const Buttons = lazy(() => import('./basic-ui/Buttons'));
 const Dropdowns = lazy(() => import('./basic-ui/Dropdowns'));
@@ -53,12 +54,13 @@ class AppRoutes extends Component {
           <Route path="/charts/chart-js" component={ ChartJs } />
           {/* new routes */}
           <Route path="/products" component={Assets}/>
+          <Route exact path="/orders" component={ Orders } />
 
           <Route path="/error-pages/error-404" component={ Error404 } />
           <Route path="/error-pages/error-500" component={ Error500 } />
 
 
-          <Redirect to="//error-pages/error-404" component={ Error404 }/>
+          <Redirect to="/error-pages/error-404" component={ Error404 }/>
         </Switch>
       </Suspense>
     );

@@ -1,5 +1,4 @@
 {
-  "name": "Hills2Home-Inventory",
   "version": "1.1.0",
   "homepage": "",
   "private": true,
@@ -33,10 +32,6 @@
     "react-clipboard.js": "^2.0.16",
     "react-color": "^2.17.3",
     "react-datepicker": "^2.9.6",
-    "react-dnd": "^9.4.0",
-    "react-dnd-html5-backend": "^9.4.0",
-    "react-dnd-multi-backend": "^3.2.2",
-    "react-dnd-touch-backend": "^9.4.0",
     "react-dom": "^16.9.0",
     "react-dragula": "^1.1.17",
     "react-dropzone": "^10.1.9",
