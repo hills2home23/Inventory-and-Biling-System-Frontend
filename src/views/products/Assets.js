@@ -13,9 +13,9 @@ function Assets() {
   const renderProducts = (products) => {
     return (products.map(p => {
       return (
-        <tr>
-          <td> {p.title} </td>
-          <td> {p.category} </td>
+        <tr key={p._id}>
+          <td className="text-center align-middle"> {p.title} </td>
+          <td className="text-center align-middle"> {p.category} </td>
           <td>  </td>
         </tr>
       );
@@ -39,14 +39,6 @@ function Assets() {
                 </thead>
                 <tbody>
                   {products.length > 0 && renderProducts(products)}
-                  {/* <tr>
-                    <td> 1 </td>
-                    <td> Herman Beck </td>
-                    <td>
-                      <ProgressBar variant="success" now={25} />
-                    </td>
-                    <td> $ 77.99 </td>
-                  </tr> */}
                 </tbody>
               </table>
             </div>

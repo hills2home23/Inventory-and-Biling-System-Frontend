@@ -140,7 +140,7 @@ class Sidebar extends Component {
             <span className="nav-link"><Trans>More</Trans></span>
           </li>
           <li className={ this.isPathActive('/vkhsa') ? 'nav-item menu-items active' : 'nav-item menu-items' }>
-            <Link className="nav-link" to="/">
+            <Link className="nav-link" to="/warehouse">
               <span className="menu-icon"><i className="mdi mdi-speedometer"></i></span>
               <span className="menu-title"><Trans>Warehouse</Trans></span>
             </Link>

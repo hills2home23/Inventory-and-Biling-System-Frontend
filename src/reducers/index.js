@@ -4,11 +4,13 @@ import messageReducers from "./messageReducer";
 import productReducers from "./productReducer";
 import orderReducers from "./orderReducers";
 import userReducers from "./userReducers";
+import warehouseReducers from "./warehouseReducer";
 
 export default combineReducers({
   auth: authReducers,
   message: messageReducers,
   product: productReducers,
   order: orderReducers,
-  user: userReducers
+  user: userReducers,
+  warehouse: warehouseReducers
 });
