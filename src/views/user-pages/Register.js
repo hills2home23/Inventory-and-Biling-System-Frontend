@@ -1,13 +1,17 @@
 import React,{useState} from 'react'
 import { Link } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { signUpAction } from "../../actions";
 
 function Register() {
+  const dispatch = useDispatch();
 
   const [formData, setformData] = useState({
     name:"",
     email: "",
     password: "",
-    role:""
+    role:"",
+    passwordConfirm:""
   });
 
   const handleOnChange = (event) => {
@@ -21,7 +25,8 @@ function Register() {
     e.preventDefault();
     //call the action creater/ axios
     console.log(formData);
-    //signIn(formData);
+    dispatch(signUpAction(formData));
+
   };
 
 
@@ -45,19 +50,24 @@ function Register() {
                 </div>
                 <div className="form-group">
                     <select className="form-control form-control-lg" id="exampleFormControlSelect2" name="role" onChange={handleOnChange}>
-                      <option>Select</option>
-                      <option>HR and payroll</option>
-                      <option>Finance</option>
-                      <option>Sales & marketing</option>
-                      <option>Brands and communication</option>
-                      <option>Logistics and supply chain</option>
-                      <option>Land acquisition/farmer support</option>
-                      <option>Warehouse management/Inventory</option>
-                      <option>Production Team</option>IT Team
+                      <option value="">Select</option>
+                      <option value="admin">Admin</option>
+                      <option value="hr-payroll">HR and payroll</option>
+                      <option value="finance">Finance</option>
+                      <option value="sales-marketing">Sales & marketing</option>
+                      <option value="brands-communication">Brands and communication</option>
+                      <option value="logistics-supply-chain">Logistics and supply chain</option>
+                      <option value="land-acquisition-farmer-support">Land acquisition/farmer support</option>
+                      <option value="warehouse-management-inventory">Warehouse management/Inventory</option>
+                      <option value="production-team">Production Team</option>IT Team
                     </select>
                 </div>
                 <div className="form-group">
                   <input type="password" className="form-control form-control-lg" name="password" id="exampleInputPassword1" placeholder="Password" onChange={handleOnChange}/>
+                </div>
+
+                <div className="form-group">
+                  <input type="password" className="form-control form-control-lg" name="passwordConfirm" id="exampleInputPassword1" placeholder="Confirm Password" onChange={handleOnChange}/>
                 </div>
                 {/*<div className="mb-4">
                   <div className="form-check">

@@ -131,7 +131,7 @@ function Warehouse() {
                   <Form.Group controlId="formWarehouseCity">
                     <Form.Control type="text" placeholder="Enter warehouse city" />
                   </Form.Group>
-                  <Button variant="primary" onClick={}>
+                  <Button variant="primary">
                     Add Warehouse
                   </Button>
                 </Form>

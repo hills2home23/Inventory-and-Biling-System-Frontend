@@ -14,7 +14,7 @@ import {
   export const signUpAction = (authDetails) => {
     return async (dispatch) => {
       try {
-        const res = await hillsServer.post("/users/signup", authDetails);
+        const res = await hillsServer.post("/employee/signup", authDetails);
         if (res.data.status === "success") {
           const { user } = res.data.data;
           const { token } = res.data;
@@ -40,7 +40,7 @@ import {
   export const signInAction = (user) => {
     return async (dispatch) => {
       try {
-        const res = await hillsServer.post("/users/login", user);
+        const res = await hillsServer.post("/employee/login", user);
         if (res.data.status === "success") {
           const { user } = res.data.data;
           const { token } = res.data;
@@ -73,7 +73,7 @@ import {
   export const forgetPassword = (resetPasswordEmail) => {
     return async (dispatch) => {
       try {
-        const res = await hillsServer.post("/users/forgotPassword", {
+        const res = await hillsServer.post("/employee/forgotPassword", {
           email: resetPasswordEmail,
         });
         if (res.data.status === "success") {
@@ -91,7 +91,7 @@ import {
     return async (dispatch) => {
       try {
         const res = await hillsServer.patch(
-          `/users/resetPassword/${authDetails.token}`,
+          `/employee/resetPassword/${authDetails.token}`,
           authDetails
         );
         if (res.data.status === "success") {
@@ -121,11 +121,6 @@ import {
             user,
           },
         });
-        if (shiprocketToken) {
-          dispatch({
-            type: SHIPROCKET_SIGNIN_SUCCESS,
-          });
-        }
         history.push("/");
       }
       else{
