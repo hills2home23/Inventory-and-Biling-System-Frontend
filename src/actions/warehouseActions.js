@@ -18,6 +18,7 @@ export const getWarehouses = () => {
     try {
       const res = await hillsServerApi.get("/warehouse");
       const data = res.data.data.warehouses;
+      // console.log(data);
       dispatch({
         type: GET_WAREHOUSES_SUCCESS,
         payload: data
@@ -33,7 +34,7 @@ export const addWarehouse = (warehouse) => {
   return async (dispatch) => {
     dispatch({ type: ADD_WAREHOUSE_REQUEST });
     try {
-      const res = await hillsServerApi.post("/warehouse", { warehouse });
+      const res = await hillsServerApi.post("/warehouse", warehouse);
       if (res.data.status === "success") {
         const data = res.data.data.warehouse;
         dispatch({
@@ -52,7 +53,7 @@ export const updateWarehouse = (id, warehouse) => {
   return async (dispatch) => {
     dispatch({ type: UPDATE_WAREHOUSE_REQUEST });
     try {
-      const res = await hillsServerApi.patch(`/warehouse/${id}`, { warehouse });
+      const res = await hillsServerApi.patch(`/warehouse/${id}`, warehouse);
       if (res.data.status === "success") {
         const data = res.data.data.warehouse;
         dispatch({

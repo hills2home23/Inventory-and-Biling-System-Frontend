@@ -17,25 +17,49 @@ const buttonStyles = {
   border: "none"
 };
 // below variable has to be deleted
-const sample = [
-  {
-    name: 'A',
-    city: 'abc'
-  },
-  {
-    name: 'A',
-    city: 'abc'
-  },
-  {
-    name: 'A',
-    city: 'abc'
-  },
-  {
-    name: 'A',
-    city: 'abc'
-  }
-];
+// const sample = [
+//   {name: 'A',city: 'abc'},
+//   {name: 'A',city: 'abc'},
+//   {name: 'A',city: 'abc'},
+//   {name: 'A',city: 'abc'}];
+
 function Warehouse() {
+  const dispatch = useDispatch();
+  
+  // For Add Form
+  const [addFormData, setAddFormData] = useState({
+    name: "",
+    city: ""
+  });
+  const handleOnChangeAdd = (event) => {
+    setAddFormData({
+      ...addFormData,
+      [event.target.name]: event.target.value
+    });
+  };
+  const handleAddSubmit = (e) => {
+    e.preventDefault();
+    console.log(addFormData);
+    dispatch(addWarehouse(addFormData));
+  }
+  
+  // For Update Form
+  const [updateFormData, setUpdateFormData] = useState({
+    name: "",
+    city: ""
+  });
+  const handleOnChangeUpdate = (event) => {
+    setUpdateFormData({
+      ...updateFormData,
+      [event.target.name]: event.target.value
+    });
+  };
+  const handleUpdateSubmit = (e,id) => {
+    e.preventDefault();
+    console.log(updateFormData);
+    dispatch(updateWarehouse(id, updateFormData));
+  }
+
   // For Add Modal
   const [showAddModal, setAddShow] = useState(false);
   const handleCloseAdd = () => setAddShow(false);
@@ -46,13 +70,12 @@ function Warehouse() {
   const handleCloseUpdate = () => setUpdateShow(false);
   const handleShowUpdate = () => setUpdateShow(true);
 
-  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getWarehouses());
   }, [dispatch]);
-  const warehouses = useSelector(state => state.warehouses) || sample;
+  const {warehouses} = useSelector(state => state.warehouse) || [];
   const warehouse = useSelector(state => state.warehouse) || {};
-  // console.table(warehouse[0]);
+  // console.log(warehouse);
 
   // This will render all the warehouses
   const renderWarehouses = (warehouses) => {
@@ -72,14 +95,14 @@ function Warehouse() {
               </Modal.Header>
               <Modal.Body style={{ background: "#ffffff" }}>
                 {/* Form for adding a new warehouse */}
-                <Form>
+                <Form onSubmit={(e) => handleUpdateSubmit(e, w._id)}>
                   <Form.Group controlId="formWarehouseName">
-                    <Form.Control type="text" defaultValue={w.name}/>
+                    <Form.Control type="text" name="name" placeholder="Enter warehouse name" defaultValue={w.name} onChange={handleOnChangeUpdate}/>
                   </Form.Group>
                   <Form.Group controlId="formWarehouseCity">
-                    <Form.Control type="text" defaultValue={w.city} />
+                    <Form.Control type="text" name="city" placeholder="Enter warehouse city" defaultValue={w.city} onChange={handleOnChangeUpdate} />
                   </Form.Group>
-                  <Button variant="primary" onClick={updateWarehouse(w._id, w)}>
+                  <Button variant="primary" type="submit">
                     Update Warehouse
                   </Button>
                 </Form>
@@ -94,9 +117,9 @@ function Warehouse() {
             {/* Modal ends */}
             <Button
               style={buttonStyles}
-              onClick={() => { deleteWarehouse(w._id); }}
+              onClick={() => { dispatch(deleteWarehouse(w._id)); }}
             >
-              <span><DeleteIcon color="secondary" /></span>
+              <DeleteIcon color="secondary" />
             </Button>
           </td>
         </tr>
@@ -104,10 +127,7 @@ function Warehouse() {
     }));
   }
 
-  // This will add a new warehouse
-  const addNewWarehouse = () => {
 
-  };
   return (
     <div>
       <div className="col-lg-12 grid-margin stretch-card">
@@ -124,14 +144,14 @@ function Warehouse() {
               </Modal.Header>
               <Modal.Body style={{ background: "#ffffff" }}>
                 {/* Form for adding a new warehouse */}
-                <Form>
+                <Form onSubmit={handleAddSubmit}>
                   <Form.Group controlId="formWarehouseName">
-                    <Form.Control type="text" placeholder="Enter warehouse name" />
+                    <Form.Control type="text" name="name" placeholder="Enter warehouse name" onChange={handleOnChangeAdd} />
                   </Form.Group>
                   <Form.Group controlId="formWarehouseCity">
-                    <Form.Control type="text" placeholder="Enter warehouse city" />
+                    <Form.Control type="text" name="city" placeholder="Enter warehouse city" onChange={handleOnChangeAdd} />
                   </Form.Group>
-                  <Button variant="primary" onClick={addNewWarehouse}>
+                  <Button variant="primary" type="submit">
                     Add Warehouse
                   </Button>
                 </Form>

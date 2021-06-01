@@ -25,6 +25,7 @@ const warehouseReducers = (state = initState, action) => {
         }
 
         case GET_WAREHOUSES_SUCCESS: {
+            // console.log(action.payload);
             return {
                 ...state,
                 warehouses: action.payload,

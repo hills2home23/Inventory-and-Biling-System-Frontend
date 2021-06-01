@@ -187,7 +187,7 @@ class Sidebar extends Component {
               <div>
                 <ul className="nav flex-column sub-menu">
                   <li className="nav-item"> <Link className={ this.isPathActive('/tables/basic-table') ? 'nav-link active' : 'nav-link' } to="/tables/basic-table"><Trans>Add new Employee</Trans></Link></li>
-                  <li className="nav-item"> <Link className={ this.isPathActive('/tables/basic-table') ? 'nav-link active' : 'nav-link' } to="/tables/basic-table"><Trans>List Employees</Trans></Link></li>
+                  <li className="nav-item"> <Link className={ this.isPathActive('/employees') ? 'nav-link active' : 'nav-link' } to="/employees"><Trans>List Employees</Trans></Link></li>
                 </ul>
               </div>
             </Collapse>

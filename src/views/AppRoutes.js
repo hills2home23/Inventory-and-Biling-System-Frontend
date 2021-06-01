@@ -5,6 +5,10 @@ import ProtectedRoute from "../components/ProtectedRoute";
 import Spinner from './shared/Spinner';
 
 const Dashboard = lazy(() => import('./dashboard/Dashboard'));
+// new components added
+const Assets = lazy(() => import('./products/Assets'));
+const Warehouse = lazy(() => import('./warehouse/Warehouse'));
+const Employees = lazy(() => import('./employee/Employees'));
 const Orders = lazy(() => import('./orders/orders'));
 
 const Buttons = lazy(() => import('./basic-ui/Buttons'));
@@ -25,9 +29,6 @@ const Error500 = lazy(() => import('./error-pages/Error500'));
 const Login = lazy(() => import('./user-pages/Login'));
 const Register1 = lazy(() => import('./user-pages/Register'));
 
-// new components added
-const Assets = lazy(() => import('./products/Assets'));
-const Warehouse = lazy(() => import('./warehouse/Warehouse'));
 
 class AppRoutes extends Component {
   render () {
@@ -56,6 +57,7 @@ class AppRoutes extends Component {
           {/* new routes */}
           <Route path="/products" component={Assets}/>
           <Route path="/warehouse" component={Warehouse}/>
+          <Route path="/employees" component={Employees}/>
           <Route exact path="/orders" component={ Orders } />
 
           <Route path="/error-pages/error-404" component={ Error404 } />
