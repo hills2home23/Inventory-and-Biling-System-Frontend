@@ -41,6 +41,7 @@ function Warehouse() {
     e.preventDefault();
     console.log(addFormData);
     dispatch(addWarehouse(addFormData));
+    dispatch(getWarehouses());
   }
   
   // For Update Form
@@ -56,8 +57,9 @@ function Warehouse() {
   };
   const handleUpdateSubmit = (e,id) => {
     e.preventDefault();
-    console.log(updateFormData);
+    // console.log(updateFormData);
     dispatch(updateWarehouse(id, updateFormData));
+    dispatch(getWarehouses());
   }
 
   // For Add Modal
@@ -117,7 +119,7 @@ function Warehouse() {
             {/* Modal ends */}
             <Button
               style={buttonStyles}
-              onClick={() => { dispatch(deleteWarehouse(w._id)); }}
+              onClick={() => { dispatch(deleteWarehouse(w._id)); dispatch(getWarehouses());}}
             >
               <DeleteIcon color="secondary" />
             </Button>

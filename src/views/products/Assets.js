@@ -26,7 +26,7 @@ function Assets() {
       <div className="col-lg-12 grid-margin stretch-card">
         <div className="card">
           <div className="card-body">
-            <h4 className="card-title">Bordered table</h4>
+            <h4 className="card-title">All Products</h4>
             {/* <p className="card-description"> Add className <code>.table-bordered</code></p> */}
             <div className="table-responsive">
               <table className="table table-bordered">

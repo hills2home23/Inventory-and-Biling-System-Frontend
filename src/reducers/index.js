@@ -5,6 +5,7 @@ import productReducers from "./productReducer";
 import orderReducers from "./orderReducers";
 import userReducers from "./userReducers";
 import warehouseReducers from "./warehouseReducer";
+import employeeReducers from "./employeeReducers";
 
 export default combineReducers({
   auth: authReducers,
@@ -12,5 +13,6 @@ export default combineReducers({
   product: productReducers,
   order: orderReducers,
   user: userReducers,
-  warehouse: warehouseReducers
+  warehouse: warehouseReducers,
+  employee: employeeReducers
 });

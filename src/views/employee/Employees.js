@@ -19,10 +19,10 @@ const buttonStyles = {
 
 //This sample has to deleted.
 const sample = [
-  { name: 'A', email: 'abc', role: 'admin' },
-  { name: 'A', email: 'abc', role: 'admin' },
-  { name: 'A', email: 'abc', role: 'admin' },
-  { name: 'A', email: 'abc', role: 'admin' }];
+  { name: 'A', email: 'abc', role: 'admin', _id: 111 },
+  { name: 'A', email: 'abc', role: 'admin', _id: 222 },
+  { name: 'A', email: 'abc', role: 'admin', _id: 333 },
+  { name: 'A', email: 'abc', role: 'admin', _id: 444 }];
 
 
 function Employees() {
@@ -30,7 +30,8 @@ function Employees() {
   useEffect(() => {
     dispatch(getEmployees());
   }, [dispatch])
-  const employees = useSelector(state => state.employees) || sample; // sample to be replaced by []
+  const { employees } = useSelector(state => state.employee) || sample; // sample to be replaced by []
+  // console.log(employees);
 
   const renderEmployees = (employees) => {
     return (employees.map(emp => {
@@ -40,12 +41,12 @@ function Employees() {
           <td className="text-center align-middle"> {emp.email} </td>
           <td className="text-center align-middle"> {emp.role} </td>
           <td className="text-center align-middle">
-            <Link to="#">
+            <Link to={`/employees/${emp._id}`}>
               <span><ShowIcon color="primary" /></span>
             </Link>
             <Button
               style={buttonStyles}
-            onClick={() => { deleteEmployee(emp._id); }}
+              onClick={() => { deleteEmployee(emp._id); }}
             >
               <span><DeleteIcon color="secondary" /></span>
             </Button>
@@ -61,9 +62,7 @@ function Employees() {
           <div className="card-body">
             <div className="d-flex p-1 justify-content-between">
               <h4 className="card-title">Employees</h4>
-              {/* <button onClick={handleShowAdd} className="btn btn-primary">Add Warehouse</button> */}
             </div>
-            {/* Employee Table */}
             <div className="table-responsive">
               <table className="table table-bordered">
                 <thead>

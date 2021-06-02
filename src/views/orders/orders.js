@@ -50,9 +50,9 @@ function Orders() {
                         </tr>
                       </thead>
                       <tbody>
-                      {orders.length===0?<tr>You Doesn't have any orders</tr>:orders.map((orderItem, index) => (
+                      {orders.length===0?<tr><td>You Doesn't have any orders</td></tr>:orders.map((orderItem, index) => (
 
-                        <tr>
+                        <tr key={orderItem._id}>
                           <td> {index+1} </td>
                           <td> {orderItem.address[0].fullName.toUpperCase()} </td>
                           <td>  </td>

@@ -1,6 +1,8 @@
 import {
   GET_EMPLOYEES_REQUEST,
   GET_EMPLOYEES_SUCCESS,
+  GET_EMPLOYEE_REQUEST,
+  GET_EMPLOYEE_SUCCESS,
   DELETE_EMPLOYEE_REQUEST,
   DELETE_EMPLOYEE_SUCCESS
 } from "../actions/types";
@@ -16,6 +18,23 @@ export const getEmployees = () => {
       const data = res.data.data.employees;
       dispatch({
         type: GET_EMPLOYEES_SUCCESS,
+        payload: data
+      });
+    }
+    catch (error) {
+      dispatch(showErrorSnackbar(error.message));
+    }
+  };
+};
+
+export const getEmployeeByID = (id) => {
+  return async (dispatch) => {
+    dispatch({ type: GET_EMPLOYEE_REQUEST });
+    try {
+      const res = await hillsServerApi.get(`/employee/${id}`);
+      const data = res.data.data.employee;
+      dispatch({
+        type: GET_EMPLOYEE_SUCCESS,
         payload: data
       });
     }

@@ -1,6 +1,6 @@
 import React, { Component,Suspense, lazy } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import ProtectedRoute from "../components/ProtectedRoute";
+// import ProtectedRoute from "../components/ProtectedRoute";
 
 import Spinner from './shared/Spinner';
 
@@ -9,6 +9,7 @@ const Dashboard = lazy(() => import('./dashboard/Dashboard'));
 const Assets = lazy(() => import('./products/Assets'));
 const Warehouse = lazy(() => import('./warehouse/Warehouse'));
 const Employees = lazy(() => import('./employee/Employees'));
+const EmployeeProfile = lazy(() => import('./employee/EmployeeProfile'));
 const Orders = lazy(() => import('./orders/orders'));
 
 const Buttons = lazy(() => import('./basic-ui/Buttons'));
@@ -57,6 +58,7 @@ class AppRoutes extends Component {
           {/* new routes */}
           <Route path="/products" component={Assets}/>
           <Route path="/warehouse" component={Warehouse}/>
+          <Route exact path="/employees/:id" component={EmployeeProfile}/>
           <Route path="/employees" component={Employees}/>
           <Route exact path="/orders" component={ Orders } />
 
