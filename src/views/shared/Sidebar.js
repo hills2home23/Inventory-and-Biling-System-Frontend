@@ -187,7 +187,7 @@ class Sidebar extends Component {
             <Collapse in={ this.state.userMenuOpen }>
               <div>
                 <ul className="nav flex-column sub-menu">
-                  <li className="nav-item"> <Link className={ this.isPathActive('/tables/basic-table') ? 'nav-link active' : 'nav-link' } to="/tables/basic-table"><Trans>Add new Employee</Trans></Link></li>
+                  <li className="nav-item"> <Link className={ this.isPathActive('/add-employee') ? 'nav-link active' : 'nav-link' } to="/add-employee"><Trans>Add new Employee</Trans></Link></li>
                   <li className="nav-item"> <Link className={ this.isPathActive('/employees') ? 'nav-link active' : 'nav-link' } to="/employees"><Trans>List Employees</Trans></Link></li>
                 </ul>
               </div>
@@ -205,8 +205,8 @@ class Sidebar extends Component {
             <Collapse in={ this.state.chartsMenuOpen }>
               <div>
                 <ul className="nav flex-column sub-menu">
-                  <li className="nav-item"> <Link className={ this.isPathActive('/tables/basic-table') ? 'nav-link active' : 'nav-link' } to="/send-email"><Trans>Send Email</Trans></Link></li>
-                  {/*<li className="nav-item"> <Link className={ this.isPathActive('/tables/basic-table') ? 'nav-link active' : 'nav-link' } to="/tables/basic-table"><Trans>Billing</Trans></Link></li>*/}
+                  <li className="nav-item"> <Link className={ this.isPathActive('/send-email') ? 'nav-link active' : 'nav-link' } to="/send-email"><Trans>Send Email</Trans></Link></li>
+                  {/*<li className="nav-item"> <Link className={ this.isPathActive('/add-employee') ? 'nav-link active' : 'nav-link' } to="/add-employee"><Trans>Add Employee</Trans></Link></li>*/}
                 </ul>
               </div>
             </Collapse>

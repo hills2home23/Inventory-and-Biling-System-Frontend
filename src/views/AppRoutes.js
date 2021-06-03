@@ -9,6 +9,8 @@ const Dashboard = lazy(() => import('./dashboard/Dashboard'));
 const Assets = lazy(() => import('./products/Assets'));
 const Warehouse = lazy(() => import('./warehouse/Warehouse'));
 const Employees = lazy(() => import('./employee/Employees'));
+const AddEmployee = lazy(() => import('./employee/AddEmployee'));
+
 const EmployeeProfile = lazy(() => import('./employee/EmployeeProfile'));
 const Orders = lazy(() => import('./orders/orders'));
 const Logs = lazy(() => import('./logs/Logs'));
@@ -62,6 +64,8 @@ class AppRoutes extends Component {
           <Route path="/warehouse" component={Warehouse}/>
           <Route exact path="/employees/:id" component={EmployeeProfile}/>
           <Route path="/employees" component={Employees}/>
+          <Route path="/add-employee" component={AddEmployee}/>
+
           <Route exact path="/orders" component={ Orders } />
           <Route exact path="/logs" component={ Logs } />
           <Route exact path="/invoice" component={ Invoice } />
