@@ -61,3 +61,18 @@ export const deleteEmployee = (id) => {
     }
   };
 };
+
+
+export const sendEmail = (data) => {
+  return async (dispatch) => {
+      console.log(data);
+      try {
+        const token = localStorage.getItem("token");
+        hillsServerApi.defaults.headers.common["Authorization"] = token;
+        const res = await hillsServerApi.post("/email/sendmail", data);
+        dispatch(showSuccessSnackbar("User Registered Successfully"));
+      } catch (error) {
+        dispatch(showErrorSnackbar("There seems to an issue. Try again later"));
+      }
+  };
+};

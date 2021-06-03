@@ -11,7 +11,9 @@ const Warehouse = lazy(() => import('./warehouse/Warehouse'));
 const Employees = lazy(() => import('./employee/Employees'));
 const EmployeeProfile = lazy(() => import('./employee/EmployeeProfile'));
 const Orders = lazy(() => import('./orders/orders'));
-
+const Logs = lazy(() => import('./logs/Logs'));
+const Invoice = lazy(() => import('./invoice/Invoice'));
+const Email = lazy(() => import('./email/Email'));
 const Buttons = lazy(() => import('./basic-ui/Buttons'));
 const Dropdowns = lazy(() => import('./basic-ui/Dropdowns'));
 const Typography = lazy(() => import('./basic-ui/Typography'));
@@ -61,7 +63,9 @@ class AppRoutes extends Component {
           <Route exact path="/employees/:id" component={EmployeeProfile}/>
           <Route path="/employees" component={Employees}/>
           <Route exact path="/orders" component={ Orders } />
-
+          <Route exact path="/logs" component={ Logs } />
+          <Route exact path="/invoice" component={ Invoice } />
+          <Route exact path="/send-email" component={ Email } />
           <Route path="/error-pages/error-404" component={ Error404 } />
           <Route path="/error-pages/error-500" component={ Error500 } />
 

@@ -145,18 +145,19 @@ class Sidebar extends Component {
               <span className="menu-title"><Trans>Warehouse</Trans></span>
             </Link>
           </li>
-          <li className={ this.isPathActive('/vhdc') ? 'nav-item menu-items active' : 'nav-item menu-items' }>
-            <Link className="nav-link" to="/">
+          <li className={ this.isPathActive('/logs') ? 'nav-item menu-items active' : 'nav-item menu-items' }>
+            <Link className="nav-link" to="/logs">
               <span className="menu-icon"><i className="mdi mdi-speedometer"></i></span>
               <span className="menu-title"><Trans>Log User Access</Trans></span>
             </Link>
           </li>
-          <li className={ this.isPathActive('/vhdc') ? 'nav-item menu-items active' : 'nav-item menu-items' }>
-            <Link className="nav-link" to="/">
+          <li className={ this.isPathActive('/invoice') ? 'nav-item menu-items active' : 'nav-item menu-items' }>
+            <Link className="nav-link" to="/invoice">
               <span className="menu-icon"><i className="mdi mdi-speedometer"></i></span>
               <span className="menu-title"><Trans>Invoice</Trans></span>
             </Link>
           </li>
+
           {/*<li className={ this.isPathActive('/tables') ? 'nav-item menu-items active' : 'nav-item menu-items' }>
             <div className={ this.state.tablesMenuOpen ? 'nav-link menu-expanded' : 'nav-link' } onClick={ () => this.toggleMenuState('tablesMenuOpen') } data-toggle="collapse">
               <span className="menu-icon">
@@ -204,8 +205,8 @@ class Sidebar extends Component {
             <Collapse in={ this.state.chartsMenuOpen }>
               <div>
                 <ul className="nav flex-column sub-menu">
-                  <li className="nav-item"> <Link className={ this.isPathActive('/tables/basic-table') ? 'nav-link active' : 'nav-link' } to="/tables/basic-table"><Trans>Alert</Trans></Link></li>
-                  <li className="nav-item"> <Link className={ this.isPathActive('/tables/basic-table') ? 'nav-link active' : 'nav-link' } to="/tables/basic-table"><Trans>Billing</Trans></Link></li>
+                  <li className="nav-item"> <Link className={ this.isPathActive('/tables/basic-table') ? 'nav-link active' : 'nav-link' } to="/send-email"><Trans>Send Email</Trans></Link></li>
+                  {/*<li className="nav-item"> <Link className={ this.isPathActive('/tables/basic-table') ? 'nav-link active' : 'nav-link' } to="/tables/basic-table"><Trans>Billing</Trans></Link></li>*/}
                 </ul>
               </div>
             </Collapse>
