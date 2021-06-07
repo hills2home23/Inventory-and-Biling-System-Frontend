@@ -6,6 +6,7 @@ import orderReducers from "./orderReducers";
 import userReducers from "./userReducers";
 import warehouseReducers from "./warehouseReducer";
 import employeeReducers from "./employeeReducers";
+import offlineOrderReducers from "./offlineOrderReducers";
 
 export default combineReducers({
   auth: authReducers,
@@ -14,5 +15,6 @@ export default combineReducers({
   order: orderReducers,
   user: userReducers,
   warehouse: warehouseReducers,
-  employee: employeeReducers
+  employee: employeeReducers,
+  offlineOrders: offlineOrderReducers
 });

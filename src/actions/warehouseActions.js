@@ -68,6 +68,7 @@ export const updateWarehouse = (id, warehouse) => {
     }
   };
 };
+
 export const deleteWarehouse = (id) => {
   return async (dispatch) => {
     dispatch({ type: DELETE_WAREHOUSE_REQUEST });

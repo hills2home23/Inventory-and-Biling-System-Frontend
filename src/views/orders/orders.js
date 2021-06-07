@@ -23,7 +23,7 @@ function Orders() {
 
     return (
         <div>
-          <div className="page-header">
+          {/* <div className="page-header">
             <h3 className="page-title"> Basic Tables </h3>
             <nav aria-label="breadcrumb">
               <ol className="breadcrumb">
@@ -31,7 +31,7 @@ function Orders() {
                 <li className="breadcrumb-item active" aria-current="page">Basic tables</li>
               </ol>
             </nav>
-          </div>
+          </div> */}
           <div className="row">
             <div className="col-lg-12 grid-margin stretch-card">
               <div className="card">
@@ -56,7 +56,7 @@ function Orders() {
                           <td> {index+1} </td>
                           <td> {orderItem.address[0].fullName.toUpperCase()} </td>
                           <td>  </td>
-                          <td> Rs {orderItem.price} </td>
+                          <td> &#8377; {orderItem.cartTotal} </td>
                           <td> {formatDate(orderItem.createdAt)} </td>
                           <td> {orderItem.status} </td>
 

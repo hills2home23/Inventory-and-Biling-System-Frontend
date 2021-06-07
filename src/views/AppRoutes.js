@@ -13,6 +13,8 @@ const AddEmployee = lazy(() => import('./employee/AddEmployee'));
 
 const EmployeeProfile = lazy(() => import('./employee/EmployeeProfile'));
 const Orders = lazy(() => import('./orders/orders'));
+const OfflineOrders = lazy(() => import('./orders/OfflineOrders'));
+const OfflineOrderForm = lazy(() => import('./orders/OfflineOrderForm'));
 const Logs = lazy(() => import('./logs/Logs'));
 const Invoice = lazy(() => import('./invoice/Invoice'));
 const Email = lazy(() => import('./email/Email'));
@@ -67,6 +69,9 @@ class AppRoutes extends Component {
           <Route path="/add-employee" component={AddEmployee}/>
 
           <Route exact path="/orders" component={ Orders } />
+          <Route exact path="/offorders/edit/:id" component={ OfflineOrderForm } />
+          <Route exact path="/offorders/add" component={ OfflineOrderForm } />
+          <Route exact path="/offorders" component={ OfflineOrders } />
           <Route exact path="/logs" component={ Logs } />
           <Route exact path="/invoice" component={ Invoice } />
           <Route exact path="/send-email" component={ Email } />
