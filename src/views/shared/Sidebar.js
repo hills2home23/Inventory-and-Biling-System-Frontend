@@ -3,6 +3,22 @@ import { Link, withRouter } from 'react-router-dom';
 import { Collapse, Dropdown } from 'react-bootstrap';
 import { Trans } from 'react-i18next';
 
+// Icons for Sidebar
+import {
+  DashboardRounded,
+  ShopRounded,
+  ShopTwoRounded,
+  LocalOfferRounded,
+  Receipt,
+  Group,
+  Email,
+  ConfirmationNumber,
+  TrendingUp,
+  HomeWork
+} from '@material-ui/icons';
+// Colors for Icons
+import { green, lightBlue, red, purple, blue, orange, amber, yellow } from '@material-ui/core/colors';
+
 class Sidebar extends Component {
 
   state = {};
@@ -115,27 +131,27 @@ class Sidebar extends Component {
           </li>
           <li className={this.isPathActive('/') ? 'nav-item menu-items active' : 'nav-item menu-items'}>
             <Link className="nav-link" to="/">
-              <span className="menu-icon"><i className="mdi mdi-speedometer"></i></span>
+              <span className="menu-icon"><DashboardRounded fontSize="small" style={{ color: lightBlue[600] }} /></span>
               <span className="menu-title"><Trans>Dashboard</Trans></span>
             </Link>
           </li>
           <li className={this.isPathActive('/products') ? 'nav-item menu-items active' : 'nav-item menu-items'}>
             <Link className="nav-link" to="/products">
-              <span className="menu-icon"><i className="mdi mdi-speedometer"></i></span>
+              <span className="menu-icon"><LocalOfferRounded fontSize="small" style={{ color: orange[900] }} /></span>
               <span className="menu-title"><Trans>All Products</Trans></span>
             </Link>
           </li>
 
           <li className={this.isPathActive('/orders') ? 'nav-item menu-items active' : 'nav-item menu-items'}>
             <Link className="nav-link" to="/orders">
-              <span className="menu-icon"><i className="mdi mdi-speedometer"></i></span>
+              <span className="menu-icon"><ShopRounded fontSize="small"  style={{ color: purple[400] }} /></span>
               <span className="menu-title"><Trans>Orders</Trans></span>
             </Link>
           </li>
 
           <li className={this.isPathActive('/offorders') ? 'nav-item menu-items active' : 'nav-item menu-items'}>
             <div className={this.state.orderMenuOpen ? 'nav-link menu-expanded' : 'nav-link'} onClick={() => this.toggleMenuState('orderMenuOpen')} data-toggle="collapse">
-              <span className="menu-icon"><i className="mdi mdi-speedometer"></i></span>
+              <span className="menu-icon"><ShopTwoRounded fontSize="small"  style={{ color: purple[500] }} /></span>
               <span className="menu-title"><Trans>Offline Orders</Trans></span>
               <i className="menu-arrow"></i>
             </div>
@@ -161,19 +177,19 @@ class Sidebar extends Component {
           </li>
           <li className={this.isPathActive('/warehouse') ? 'nav-item menu-items active' : 'nav-item menu-items'}>
             <Link className="nav-link" to="/warehouse">
-              <span className="menu-icon"><i className="mdi mdi-speedometer"></i></span>
+              <span className="menu-icon"><HomeWork fontSize="small"  style={{ color: green[900] }} /></span>
               <span className="menu-title"><Trans>Warehouse</Trans></span>
             </Link>
           </li>
           <li className={this.isPathActive('/logs') ? 'nav-item menu-items active' : 'nav-item menu-items'}>
             <Link className="nav-link" to="/logs">
-              <span className="menu-icon"><i className="mdi mdi-speedometer"></i></span>
+              <span className="menu-icon"><TrendingUp fontSize="small"  style={{ color: blue[500] }} /></span>
               <span className="menu-title"><Trans>Activity Logs</Trans></span>
             </Link>
           </li>
           <li className={this.isPathActive('/invoice') ? 'nav-item menu-items active' : 'nav-item menu-items'}>
             <Link className="nav-link" to="/invoice">
-              <span className="menu-icon"><i className="mdi mdi-speedometer"></i></span>
+              <span className="menu-icon"><Receipt fontSize="small"  style={{ color: red[700] }} /></span>
               <span className="menu-title"><Trans>Invoice</Trans></span>
             </Link>
           </li>
@@ -198,9 +214,7 @@ class Sidebar extends Component {
 
           <li className={this.isPathActive('/tablvssses') ? 'nav-item menu-items active' : 'nav-item menu-items'}>
             <div className={this.state.userMenuOpen ? 'nav-link menu-expanded' : 'nav-link'} onClick={() => this.toggleMenuState('userMenuOpen')} data-toggle="collapse">
-              <span className="menu-icon">
-                <i className="mdi mdi-table-large"></i>
-              </span>
+              <span className="menu-icon"><Group fontSize="small"  style={{ color: yellow[900] }} /></span>
               <span className="menu-title"><Trans>User Management</Trans></span>
               <i className="menu-arrow"></i>
             </div>
@@ -216,9 +230,7 @@ class Sidebar extends Component {
 
           <li className={this.isPathActive('/tablvssses') ? 'nav-item menu-items active' : 'nav-item menu-items'}>
             <div className={this.state.chartsMenuOpen ? 'nav-link menu-expanded' : 'nav-link'} onClick={() => this.toggleMenuState('chartsMenuOpen')} data-toggle="collapse">
-              <span className="menu-icon">
-                <i className="mdi mdi-table-large"></i>
-              </span>
+              <span className="menu-icon"><Email fontSize="small"  style={{ color: green[500] }} /></span>
               <span className="menu-title"><Trans>Email</Trans></span>
               <i className="menu-arrow"></i>
             </div>
@@ -233,7 +245,7 @@ class Sidebar extends Component {
           </li>
           <li className={this.isPathActive('/gfydch') ? 'nav-item menu-items active' : 'nav-item menu-items'}>
             <Link className="nav-link" to="/vgc">
-              <span className="menu-icon"><i className="mdi mdi-speedometer"></i></span>
+              <span className="menu-icon"><ConfirmationNumber fontSize="small"  style={{ color: amber[500] }} /></span>
               <span className="menu-title"><Trans>Tickets</Trans></span>
             </Link>
           </li>
