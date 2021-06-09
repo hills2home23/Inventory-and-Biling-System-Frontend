@@ -3,9 +3,9 @@ import {
     ORDER_DETAILS_UPDATED,
     GET_ORDER_DETAILS,
   } from "./types";
-  import hillsServerApi from "../config/axios";
+  //import hillsServerApi from "../config/axios";
   import { showErrorSnackbar, showSuccessSnackbar } from "./messageActions";
-  import hillsServer from "../config/axios";
+  import hillsServerApi from "../config/h2hapi";
   
   function myOrdersSetup(RespData) {
     let response = RespData;
@@ -40,7 +40,7 @@ import {
   export const getVerifiedProducts = () => {
     return async (dispatch) => {
       const token = localStorage.getItem("token");
-      hillsServer.defaults.headers.common["Authorization"] = token;
+      hillsServerApi.defaults.headers.common["Authorization"] = token;
       const response = await hillsServerApi.get(`/product/verifiedOrders`);
       console.log(response.data);
       const data = myOrdersSetup(response.data.data.sales);

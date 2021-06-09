@@ -5,7 +5,7 @@ import {
     GET_PRODUCT_SUCCESS,
     SHOW_CATEGORY,
   } from "./types";
-  import hillsServerApi from "../config/axios";
+  import hillsServerApi from "../config/h2hapi";
   import { showSuccessSnackbar, showErrorSnackbar } from "./index";
   
   export const getProducts = () => {
