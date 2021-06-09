@@ -16,20 +16,20 @@ import {
       try {
         const res = await hillsServer.post("/employee/signup", authDetails);
         if (res.data.status === "success") {
-          const { user } = res.data.data;
+          const { employee } = res.data.data;
           const { token } = res.data;
   
           localStorage.setItem("token", token);
           hillsServer.defaults.headers.common["Authorization"] = token;
-          localStorage.setItem("user", JSON.stringify(user));
+          localStorage.setItem("user", JSON.stringify(employee));
   
           dispatch({
             type: SIGNUP_SUCCESS,
-            payload: { user, token },
+            payload: { employee, token },
           });
           history.push("/");
   
-          dispatch(showSuccessSnackbar("User Registered Successfully"));
+          dispatch(showSuccessSnackbar("Employee Registered Successfully"));
         }
       } catch (error) {
         dispatch(showErrorSnackbar("There seems to an issue. Try again later"));
@@ -42,7 +42,7 @@ import {
       try {
         const res = await hillsServer.post("/employee/login", user);
         if (res.data.status === "success") {
-          const { user } = res.data.data;
+          const { employee } = res.data.data;
           const { token } = res.data;
           localStorage.setItem("token", token);
           hillsServer.defaults.headers.common["Authorization"] = token;
@@ -50,7 +50,7 @@ import {
   
           dispatch({
             type: LOGIN_SUCCESS,
-            payload: { user, token },
+            payload: { employee, token },
           });
           history.push("/");
         }
@@ -64,7 +64,6 @@ import {
     return (dispatch) => {
       localStorage.clear();
       delete hillsServer.defaults.headers.common["Authorization"];
-      dispatch({ type: RESET_SHIPMENT });
       dispatch({ type: RESET_USER });
       dispatch({ type: LOGOUT_SUCCESS });
     };
@@ -110,21 +109,20 @@ import {
   export const isUserLoggedIn = () => {
     return async (dispatch) => {
       const token = localStorage.getItem("token");
-      const shiprocketToken = localStorage.getItem("shiprocketToken");
       if (token) {
         hillsServer.defaults.headers.common["Authorization"] = token;
-        const user = JSON.parse(localStorage.getItem("user"));
+        const employee = JSON.parse(localStorage.getItem("employee"));
         dispatch({
           type: LOGIN_SUCCESS,
           payload: {
             token,
-            user,
+            employee,
           },
         });
         history.push("/");
       }
       else{
-        history.push("/");
+        history.push("/login");
       }
     };
 };

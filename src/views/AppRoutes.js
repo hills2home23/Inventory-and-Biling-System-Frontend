@@ -1,6 +1,8 @@
-import React, { Component,Suspense, lazy } from 'react';
+import React, { Component,Suspense, lazy,useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-// import ProtectedRoute from "../components/ProtectedRoute";
+import ProtectedRoute from "../components/ProtectedRoute";
+import { useDispatch, useSelector } from "react-redux";
+import { isUserLoggedIn } from "../actions";
 
 import Spinner from './shared/Spinner';
 
@@ -38,53 +40,59 @@ const Login = lazy(() => import('./user-pages/Login'));
 const Register1 = lazy(() => import('./user-pages/Register'));
 
 
-class AppRoutes extends Component {
-  render () {
-    return (
-      <Suspense fallback={<Spinner/>}>   
-        <Switch>
-          <Route path="/login" exact component={Login} />
-          <Route path="/register" exact component={Register1} />
+function AppRoutes() {
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
 
-          {/*<Route path="/forgetPassword" component={ForgetPassword} />
-          <Route path="/resetPassword" component={ResetPassword} />*/}
+  useEffect(() => {
+    if (!auth.isauthenticated) {
+      dispatch(isUserLoggedIn());
+    }
+  }, [auth.isauthenticated, dispatch]);
+  return (
+    <Suspense fallback={<Spinner/>}>   
+      <Switch>
+        <Route path="/login" exact component={Login} />
+        <Route path="/register" exact component={Register1} />
 
-          <Route exact path="/" component={ Dashboard } />
+        {/*<Route path="/forgetPassword" component={ForgetPassword} />
+        <Route path="/resetPassword" component={ResetPassword} />*/}
 
-          <Route path="/basic-ui/buttons" component={ Buttons } />
-          <Route path="/basic-ui/dropdowns" component={ Dropdowns } />
-          <Route path="/basic-ui/typography" component={ Typography } />
+        <Route exact path="/" component={ Dashboard } />
 
-          <Route path="/form-Elements/basic-elements" component={ BasicElements } />
+        <Route path="/basic-ui/buttons" component={ Buttons } />
+        <Route path="/basic-ui/dropdowns" component={ Dropdowns } />
+        <Route path="/basic-ui/typography" component={ Typography } />
 
-          <Route path="/tables/basic-table" component={ BasicTable } />
+        <Route path="/form-Elements/basic-elements" component={ BasicElements } />
 
-          <Route path="/icons/mdi" component={ Mdi } />
+        <Route path="/tables/basic-table" component={ BasicTable } />
 
-          <Route path="/charts/chart-js" component={ ChartJs } />
-          {/* new routes */}
-          <Route path="/products" component={Assets}/>
-          <Route path="/warehouse" component={Warehouse}/>
-          <Route exact path="/employees/:id" component={EmployeeProfile}/>
-          <Route path="/employees" component={Employees}/>
-          <Route path="/add-employee" component={AddEmployee}/>
+        <Route path="/icons/mdi" component={ Mdi } />
 
-          <Route exact path="/orders" component={ Orders } />
-          <Route exact path="/offorders/edit/:id" component={ EditOrderForm } />
-          <Route exact path="/offorders/add" component={ AddOrderForm } />
-          <Route exact path="/offorders" component={ OfflineOrders } />
-          <Route exact path="/logs" component={ Logs } />
-          <Route exact path="/invoice" component={ Invoice } />
-          <Route exact path="/send-email" component={ Email } />
-          <Route path="/error-pages/error-404" component={ Error404 } />
-          <Route path="/error-pages/error-500" component={ Error500 } />
+        <Route path="/charts/chart-js" component={ ChartJs } />
+        {/* new routes */}
+        <Route path="/products" component={Assets}/>
+        <Route path="/warehouse" component={Warehouse}/>
+        <Route exact path="/employees/:id" component={EmployeeProfile}/>
+        <Route path="/employees" component={Employees}/>
+        <Route path="/add-employee" component={AddEmployee}/>
+
+        <Route exact path="/orders" component={ Orders } />
+        <Route exact path="/offorders/edit/:id" component={ EditOrderForm } />
+        <Route exact path="/offorders/add" component={ AddOrderForm } />
+        <Route exact path="/offorders" component={ OfflineOrders } />
+        <Route exact path="/logs" component={ Logs } />
+        <Route exact path="/invoice" component={ Invoice } />
+        <Route exact path="/send-email" component={ Email } />
+        <Route path="/error-pages/error-404" component={ Error404 } />
+        <Route path="/error-pages/error-500" component={ Error500 } />
 
 
-          <Redirect to="/error-pages/error-404" component={ Error404 }/>
-        </Switch>
-      </Suspense>
-    );
-  }
+        <Redirect to="/error-pages/error-404" component={ Error404 }/>
+      </Switch>
+    </Suspense>
+  );
 }
 
-export default AppRoutes;
+export default AppRoutes

@@ -42,13 +42,11 @@ class Sidebar extends Component {
       { path: '/user-pages', state: 'userPagesMenuOpen' },
       { path: '/error-pages', state: 'errorPagesMenuOpen' },
     ];
-
     dropdownPaths.forEach((obj => {
       if (this.isPathActive(obj.path)) {
         this.setState({ [obj.state]: true })
       }
     }));
-
   }
 
   render() {
@@ -136,12 +134,12 @@ class Sidebar extends Component {
           </li>
 
           <li className={this.isPathActive('/offorders') ? 'nav-item menu-items active' : 'nav-item menu-items'}>
-            <div className={this.state.userMenuOpen ? 'nav-link menu-expanded' : 'nav-link'} onClick={() => this.toggleMenuState('userMenuOpen')} data-toggle="collapse">
+            <div className={this.state.orderMenuOpen ? 'nav-link menu-expanded' : 'nav-link'} onClick={() => this.toggleMenuState('orderMenuOpen')} data-toggle="collapse">
               <span className="menu-icon"><i className="mdi mdi-speedometer"></i></span>
               <span className="menu-title"><Trans>Offline Orders</Trans></span>
               <i className="menu-arrow"></i>
             </div>
-            <Collapse in={this.state.userMenuOpen}>
+            <Collapse in={this.state.orderMenuOpen}>
               <div>
                 <ul className="nav flex-column sub-menu">
                   <li className="nav-item"> <Link className={this.isPathActive('/offorders/add') ? 'nav-link active' : 'nav-link'} to="/offorders/add"><Trans>Add an Order</Trans></Link></li>
@@ -170,7 +168,7 @@ class Sidebar extends Component {
           <li className={this.isPathActive('/logs') ? 'nav-item menu-items active' : 'nav-item menu-items'}>
             <Link className="nav-link" to="/logs">
               <span className="menu-icon"><i className="mdi mdi-speedometer"></i></span>
-              <span className="menu-title"><Trans>Log User Access</Trans></span>
+              <span className="menu-title"><Trans>Activity Logs</Trans></span>
             </Link>
           </li>
           <li className={this.isPathActive('/invoice') ? 'nav-item menu-items active' : 'nav-item menu-items'}>
