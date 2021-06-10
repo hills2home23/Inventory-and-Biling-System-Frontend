@@ -16,18 +16,18 @@ import {
       try {
         const res = await hillsServer.post("/employee/signup", authDetails);
         if (res.data.status === "success") {
-          const { employee } = res.data.data;
-          const { token } = res.data;
+          //const { employee } = res.data.data;
+          //const { token } = res.data;
   
-          localStorage.setItem("token", token);
-          hillsServer.defaults.headers.common["Authorization"] = token;
-          localStorage.setItem("employee", JSON.stringify(employee));
-  
-          dispatch({
-            type: SIGNUP_SUCCESS,
-            payload: { employee, token },
-          });
-          history.push("/");
+          //localStorage.setItem("token", token);
+          //hillsServer.defaults.headers.common["Authorization"] = token;
+          //localStorage.setItem("employee", JSON.stringify(employee));
+    
+          //dispatch({
+          //  type: SIGNUP_SUCCESS,
+          //  payload: { employee, token },
+          //});
+          //history.push("/");
   
           dispatch(showSuccessSnackbar("Employee Registered Successfully"));
         }
@@ -47,7 +47,6 @@ import {
           localStorage.setItem("token", token);
           hillsServer.defaults.headers.common["Authorization"] = token;
           localStorage.setItem("employee", JSON.stringify(employee));
-  
           dispatch({
             type: LOGIN_SUCCESS,
             payload: { employee, token },
