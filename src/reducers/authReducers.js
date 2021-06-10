@@ -5,7 +5,7 @@ import {
 } from "../actions/types";
 
 const initState = {
-  user: null,
+  employee: null,
   token: null,
   isauthenticated: false,
 };
@@ -16,8 +16,8 @@ const authReducers = (state = initState, action) => {
     case SIGNUP_SUCCESS: {
       return {
         ...state,
+        employee: action.payload.employee,
         token: action.payload.token,
-        user: action.payload.user,
         isauthenticated: true,
       };
     }
