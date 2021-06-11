@@ -1,8 +1,6 @@
 import React, { Component,Suspense, lazy,useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import ProtectedRoute from "../components/ProtectedRoute";
-import { useDispatch, useSelector } from "react-redux";
-import { isUserLoggedIn } from "../actions";
 
 import Spinner from './shared/Spinner';
 
@@ -41,52 +39,34 @@ const Register1 = lazy(() => import('./user-pages/Register'));
 
 
 function AppRoutes() {
-  const dispatch = useDispatch();
-  const auth = useSelector((state) => state.auth);
-
-  useEffect(() => {
-    if (!auth.isauthenticated) {
-      dispatch(isUserLoggedIn());
-    }
-  }, [auth.isauthenticated, dispatch]);
+  
   return (
     <Suspense fallback={<Spinner/>}>   
       <Switch>
         <Route path="/login" exact component={Login} />
-        <Route path="/register" exact component={Register1} />
-
-        {/*<Route path="/forgetPassword" component={ForgetPassword} />
-        <Route path="/resetPassword" component={ResetPassword} />*/}
-
-        <Route exact path="/" component={ Dashboard } />
-
-        <Route path="/basic-ui/buttons" component={ Buttons } />
-        <Route path="/basic-ui/dropdowns" component={ Dropdowns } />
-        <Route path="/basic-ui/typography" component={ Typography } />
-
-        <Route path="/form-Elements/basic-elements" component={ BasicElements } />
-
-        <Route path="/tables/basic-table" component={ BasicTable } />
-
-        <Route path="/icons/mdi" component={ Mdi } />
-
-        <Route path="/charts/chart-js" component={ ChartJs } />
+        <ProtectedRoute exact path="/" component={ Dashboard } />
+        <ProtectedRoute path="/basic-ui/buttons" component={ Buttons } />
+        <ProtectedRoute path="/basic-ui/dropdowns" component={ Dropdowns } />
+        <ProtectedRoute path="/basic-ui/typography" component={ Typography } />
+        <ProtectedRoute path="/form-Elements/basic-elements" component={ BasicElements } />
+        <ProtectedRoute path="/tables/basic-table" component={ BasicTable } />
+        <ProtectedRoute path="/icons/mdi" component={ Mdi } />
+        <ProtectedRoute path="/charts/chart-js" component={ ChartJs } />
         {/* new routes */}
-        <Route path="/products" component={Assets}/>
-        <Route path="/warehouse" component={Warehouse}/>
-        <Route exact path="/employees/:id" component={EmployeeProfile}/>
-        <Route path="/employees" component={Employees}/>
-        <Route path="/add-employee" component={AddEmployee}/>
-
-        <Route exact path="/orders" component={ Orders } />
-        <Route exact path="/offorders/edit/:id" component={ EditOrderForm } />
-        <Route exact path="/offorders/add" component={ AddOrderForm } />
-        <Route exact path="/offorders" component={ OfflineOrders } />
-        <Route exact path="/logs" component={ Logs } />
-        <Route exact path="/invoice" component={ Invoice } />
-        <Route exact path="/send-email" component={ Email } />
-        <Route path="/error-pages/error-404" component={ Error404 } />
-        <Route path="/error-pages/error-500" component={ Error500 } />
+        <ProtectedRoute path="/products" component={Assets}/>
+        <ProtectedRoute path="/warehouse" component={Warehouse}/>
+        <ProtectedRoute exact path="/employees/:id" component={EmployeeProfile}/>
+        <ProtectedRoute path="/employees" component={Employees}/>
+        <ProtectedRoute path="/add-employee" component={AddEmployee}/>
+        <ProtectedRoute exact path="/orders" component={ Orders } />
+        <ProtectedRoute exact path="/offorders/edit/:id" component={ EditOrderForm } />
+        <ProtectedRoute exact path="/offorders/add" component={ AddOrderForm } />
+        <ProtectedRoute exact path="/offorders" component={ OfflineOrders } />
+        <ProtectedRoute exact path="/logs" component={ Logs } />
+        <ProtectedRoute exact path="/invoice" component={ Invoice } />
+        <ProtectedRoute exact path="/send-email" component={ Email } />
+        <ProtectedRoute path="/error-pages/error-404" component={ Error404 } />
+        <ProtectedRoute path="/error-pages/error-500" component={ Error500 } />
 
 
         <Redirect to="/error-pages/error-404" component={ Error404 }/>

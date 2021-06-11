@@ -2,7 +2,7 @@ import React, { useState,useEffect } from 'react';
 import { Link, withRouter,useLocation } from 'react-router-dom';
 import { Collapse, Dropdown } from 'react-bootstrap';
 import { Trans } from 'react-i18next';
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 // Icons for Sidebar
 import {
@@ -30,7 +30,7 @@ const isPathActive=(path)=>{
     return props.location.pathname.startsWith(path);
   }
 
-const  onRouteChanged=()=>{
+const onRouteChanged=()=>{
     document.querySelector('#sidebar').classList.remove('active');
     Object.keys(state).forEach(i => {
       setState({ [i]: false });
@@ -115,7 +115,7 @@ const toggleMenuState=(menuState)=> {
                   <i className="mdi mdi-dots-vertical"></i>
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="sidebar-dropdown preview-list">
-                  <a href="!#" className="dropdown-item preview-item" onClick={evt => evt.preventDefault()}>
+                 <a href="!#" className="dropdown-item preview-item" onClick={evt => evt.preventDefault()}>
                     <div className="preview-thumbnail">
                       <div className="preview-icon bg-dark rounded-circle">
                         <i className="mdi mdi-settings text-primary"></i>

@@ -57,10 +57,6 @@ function Login() {
                   </div>*/}
                   <a href="!#" onClick={event => event.preventDefault()} className="auth-link text-muted">Forgot password?</a>
                 </div>
-                
-                <div className="text-center mt-4 font-weight-light">
-                  Don't have an account? <Link to="/register" className="text-primary">Create</Link>
-                </div>
               </Form>
             </div>
           </div>
