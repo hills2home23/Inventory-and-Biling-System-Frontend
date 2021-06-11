@@ -1,15 +1,68 @@
 import React from 'react';
 import { useState, useEffect } from "react";
-// import { useParams } from "react-router";
-// import { useLocation } from "react-router-dom";
-import { Button, Form, Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { Button, Form, Col, Row } from "react-bootstrap";
+
 import {
   addOfflineOrder,
   getProducts,
 } from "../../actions";
 
+// From MaterialUI
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import Chip from '@material-ui/core/Chip';
+
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 170,
+    maxWidth: 300,
+  },
+  chips: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  chip: {
+    margin: 2,
+  },
+  noLabel: {
+    marginTop: theme.spacing(3),
+  },
+}));
+
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 300,
+    },
+  },
+};
+function getStyles(name, personName, theme) {
+  return {
+    fontWeight:
+      personName.indexOf(name) === -1
+        ? theme.typography.fontWeightRegular
+        : theme.typography.fontWeightMedium,
+  };
+}
+
+
+
+// Here it begins
 function OfflineOrderForm() {
+
+  //For Material UI Select Styles
+  const classes = useStyles();
+  const theme = useTheme();
+
   // For Add Form
   const [addFormData, setAddFormData] = useState({
     customerName: "",
@@ -20,12 +73,19 @@ function OfflineOrderForm() {
     customerCity: "",
     customerState: "",
     customerPincode: "",
-    cart: [{ productId: "", productQuantity: "" }],
+    // cart: [{ productId: "", productQuantity: "" }],
     totalPrice: "",
     discount: "",
     status: "",
     paymentStatus: ""
   });
+  const [allProducts, setAllProducts] = useState([]);
+
+  const changeAllProducts = (event) => {
+    setAllProducts(event.target.value);
+  };
+
+
   const handleOnChangeAdd = (event) => {
     setAddFormData({
       ...addFormData,
@@ -35,6 +95,7 @@ function OfflineOrderForm() {
   const handleAddSubmit = (e) => {
     e.preventDefault();
     console.log(addFormData);
+    console.log(allProducts);
     // dispatch(addOfflineOrder(addFormData));
   }
 
@@ -100,6 +161,31 @@ function OfflineOrderForm() {
 
                   <Form.Row>
                     {/* This section is for adding products */}
+                    <FormControl className={classes.formControl}>
+                      <InputLabel id="demo-mutiple-name-label">Select Products</InputLabel>
+                      <Select
+                        labelId="demo-mutiple-chip-label"
+                        id="demo-mutiple-chip"
+                        multiple
+                        value={allProducts}
+                        onChange={changeAllProducts}
+                        input={<Input id="select-multiple-chip" />}
+                        renderValue={(selected) => (
+                          <div className={classes.chips}>
+                            {selected.map((value) => (
+                              <Chip key={value} label={value} className={classes.chip} />
+                            ))}
+                          </div>
+                        )}
+                        MenuProps={MenuProps}
+                      >
+                        {products.map((p, i) => (
+                          <MenuItem key={i} value={p._id} style={getStyles(p.title, allProducts, theme)}>
+                            {p.title}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
                   </Form.Row>
                   <Form.Row>
                     <Form.Group as={Col} controlId="formTotalPrice">

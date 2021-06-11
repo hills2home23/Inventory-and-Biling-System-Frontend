@@ -32,7 +32,7 @@ function Email() {
             <div className="col-lg-12 grid-margin stretch-card">
               <div className="card">
                 <div className="card-body">
-                  <h4 className="card-title">SedEmail</h4>
+                  <h4 className="card-title">Send Email</h4>
                   <Form onSubmit={handleSubmit}>
                     <FormGroup>
                       <Label for="exampleEmail">To</Label>
