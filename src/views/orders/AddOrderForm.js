@@ -8,61 +8,10 @@ import {
   getProducts,
 } from "../../actions";
 
-// From MaterialUI
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import Chip from '@material-ui/core/Chip';
-
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 170,
-    maxWidth: 300,
-  },
-  chips: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  chip: {
-    margin: 2,
-  },
-  noLabel: {
-    marginTop: theme.spacing(3),
-  },
-}));
-
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 300,
-    },
-  },
-};
-function getStyles(name, personName, theme) {
-  return {
-    fontWeight:
-      personName.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
-  };
-}
-
-
 
 // Here it begins
-function OfflineOrderForm() {
-
-  //For Material UI Select Styles
-  const classes = useStyles();
-  const theme = useTheme();
-
+const OfflineOrderForm=()=> {
+  
   // For Add Form
   const [addFormData, setAddFormData] = useState({
     customerName: "",
@@ -73,18 +22,14 @@ function OfflineOrderForm() {
     customerCity: "",
     customerState: "",
     customerPincode: "",
-    // cart: [{ productId: "", productQuantity: "" }],
+    //cart: [{ productId: "", productQuantity: "" }],
     totalPrice: "",
     discount: "",
     status: "",
     paymentStatus: ""
   });
-  const [allProducts, setAllProducts] = useState([]);
-
-  const changeAllProducts = (event) => {
-    setAllProducts(event.target.value);
-  };
-
+  
+  const [Cart, setCart] = useState([{ Product: "", Quantity: "" }]);
 
   const handleOnChangeAdd = (event) => {
     setAddFormData({
@@ -94,9 +39,9 @@ function OfflineOrderForm() {
   };
   const handleAddSubmit = (e) => {
     e.preventDefault();
+    setAddFormData({...addFormData, Cart});
     console.log(addFormData);
-    console.log(allProducts);
-    // dispatch(addOfflineOrder(addFormData));
+    dispatch(addOfflineOrder(addFormData));
   }
 
   const dispatch = useDispatch();
@@ -104,8 +49,29 @@ function OfflineOrderForm() {
     dispatch(getProducts());
   }, [dispatch]);
   const { products } = useSelector((state) => state.product);
-  // const productNames = products.map(p => p.title);
-  // console.log(productNames);
+  
+
+
+  const handleInputChange = event => {
+    const list = [...Cart];
+    list[event.target.dataset.idx][event.target.dataset.txt] = event.target.value;
+
+    setCart(list);
+  };
+
+  // handle click event of the Add button
+  const handleAddClick = () => {
+      setCart([...Cart, { Product: "", Quantity: "" }]);
+  };
+
+  // handle click event of the Remove button
+  const handleRemoveClick = index => {
+  const list = [...Cart];
+  list.splice(index, 1);
+  setCart(list);
+  };
+
+
 
   return (
     <div>
@@ -159,34 +125,46 @@ function OfflineOrderForm() {
                     </Form.Group>
                   </Form.Row>
 
-                  <Form.Row>
-                    {/* This section is for adding products */}
-                    <FormControl className={classes.formControl}>
-                      <InputLabel id="demo-mutiple-name-label">Select Products</InputLabel>
-                      <Select
-                        labelId="demo-mutiple-chip-label"
-                        id="demo-mutiple-chip"
-                        multiple
-                        value={allProducts}
-                        onChange={changeAllProducts}
-                        input={<Input id="select-multiple-chip" />}
-                        renderValue={(selected) => (
-                          <div className={classes.chips}>
-                            {selected.map((value) => (
-                              <Chip key={value} label={value} className={classes.chip} />
-                            ))}
-                          </div>
-                        )}
-                        MenuProps={MenuProps}
-                      >
-                        {products.map((p, i) => (
-                          <MenuItem key={i} value={p._id} style={getStyles(p.title, allProducts, theme)}>
-                            {p.title}
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    </FormControl>
-                  </Form.Row>
+                  <Form.Label><b>Cart</b></Form.Label>
+                  <hr/>
+                  {Cart.map((x,i) => {
+                        const Product = `Product-${i}`;
+                        const Quantity = `Quantity-${i}`;
+                        return (
+                            <div key={`Cart-${i}`} style={{padding:"10px"}}>
+                            <Form.Row>
+                              <Form.Group as={Col}>
+                                <Form.Label> Product</Form.Label>
+                                    <Form.Control as="select" name={Product} value={Cart[i].Product} onChange={handleInputChange} data-idx={i} data-txt="Product" id={Product}>
+                                    <option value="">Select</option>
+                                    {products.map((p, i) => (
+                                      <option key={i} value={p.title} >
+                                        {p.title}
+                                      </option>
+                                    ))}
+                                    </Form.Control>   
+                                </Form.Group>  
+                                <Form.Group as={Col}>          
+                                <Form.Label>Quantity</Form.Label>
+                                    <Form.Control type="text" name={Quantity} className="form-control" value={Cart[i].Quantity}
+                                        onChange={handleInputChange}
+                                        data-idx={i}
+                                        data-txt="Quantity"
+                                        id={Quantity}
+                                        placeholder="Enter Quantity"
+                                         />
+                                </Form.Group>
+                            </Form.Row>
+                            <div className="btn-box">
+                                {Cart.length - 1 === i&&Cart.length <products.length && <span><img src="https://cdn1.iconfinder.com/data/icons/ui-colored-1/100/UI__2-512.png" style={{height:'40px',width:'auto',cursor: 'pointer',margin:'5px'}} onClick={handleAddClick}/>Add another Product</span>}
+                                {i!==0 && Cart.length - 1 === i && <img src="https://mpng.subpng.com/20180410/tkq/kisspng-computer-icons-plus-and-minus-signs-clip-art-sign-up-button-5acceb629e08e4.2883842715233790426473.jpg" style={{height:'40px',width:'auto',cursor: 'pointer',margin:'5px',float:'right'}} onClick={() => handleRemoveClick(i)}/>}
+                            </div>
+                            </div>
+                        );
+                    })}
+                  <hr/>
+    
+
                   <Form.Row>
                     <Form.Group as={Col} controlId="formTotalPrice">
                       <Form.Label>Total Price</Form.Label>
